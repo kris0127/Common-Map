@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Raphael Play</title>
+        <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="raphael.js"></script>
+		<script type="text/javascript" src="us-map-test.js"></script>
+        <style type="text/css">
+            #canvas_container {
+                width: 1100px;
+                height: 900px;
+                border: 1px solid #aaa;
+                margin: 100px 0 0 100px;
+            }
+        </style>
+        <script>
+            $(document).ready(function(){
+                var data_test = {
+                    HI:{
+                        name: 'test'
+                    }   
+                };
+
+
+                var map = $('#canvas_container').usmap({
+                    tooltip: function(id){
+                        if(data_test[id]){
+                            return data_test[id].name;
+                        }else{
+                            return '';
+                        }   
+                    },
+                    click: function(e){
+                        console.dir(e);
+                    },
+                    mouseover:function(e){
+                        // e.preventDefault();
+                    }
+                });
+                map.changeColor('HI',{fill:'green'});
+                map.setText('HI','Test');
+                // map.setTooltip('test-set');
+            });
+            
+        </script>
+    </head>
+    <body>
+        <div id="canvas_container"></div>
+    </body>
+</html>
