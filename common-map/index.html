@@ -3,7 +3,9 @@
         <title>Raphael Play</title>
         <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="raphael.js"></script>
-		<script type="text/javascript" src="us-map.js"></script>
+        <script type="text/javascript" src="us_paths.js"></script>
+        <script type="text/javascript" src="cn_paths.js"></script>
+		<script type="text/javascript" src="common-map.js"></script>
         <style type="text/css">
             #canvas_container {
                 width: 1100px;
@@ -22,12 +24,17 @@
 
 
                 var map = $('#canvas_container').usmap({
+                    // paths: cn_paths,
+                    textDoNotShow: ['DE','MD','NJ','RT','CT','MA','RI','NH'],
+                    stateExtraText:{
+                        TX:['test','aaaa']
+                    },
                     tooltip: function(id){
                         if(data_test[id]){
-                            return data_test[id].name;
+                            return data_test[id].name
                         }else{
-                            return '';
-                        }   
+                            return id;
+                        }
                     },
                     click: function(e){
                         console.dir(e);
@@ -36,7 +43,7 @@
                         // e.preventDefault();
                     }
                 });
-                map.changeColor('HI',{fill:'green'});
+                map.changeSpecificStateStyle('HI',{fill:'green'});
                 map.setText('HI','Test');
                 // map.setTooltip('test-set');
             });
